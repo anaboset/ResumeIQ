@@ -1,17 +1,16 @@
 # 🎯 ResumeIQ
 
-[![CI](https://github.com/YOUR_USERNAME/resumeiq/actions/workflows/ci.yml/badge.svg)](https://github.com/YOUR_USERNAME/resumeiq/actions)
+[![CI](https://github.com/anaboset/FUTURE_ML_03/actions/workflows/ci.yml/badge.svg)](https://github.com/YOUR_USERNAME/resumeiq/actions)
 [![Python](https://img.shields.io/badge/python-3.10%2B-blue)](https://python.org)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://YOUR_APP.streamlit.app)
 
 > **Automatically screen, score, and rank job candidates using a 3-signal ML ensemble. Built for HR teams, recruiters, and HR-tech platforms.**
 
-Built as part of the [Future Interns](https://futureinterns.com) Machine Learning Track (2026).
 
 ---
 
-## 🖥️ Live Demo
+## 🖥️[Live Demo](https://streamlit.app.io)
 
 👉 **[Try the live app →](https://YOUR_APP.streamlit.app)**
 
