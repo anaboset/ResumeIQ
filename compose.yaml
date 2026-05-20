@@ -1,0 +1,6 @@
+services:
+  resumeiq:
+    image: resumeiq
+    build:
+      context: .
+      dockerfile: ./Dockerfile
