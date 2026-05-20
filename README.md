@@ -214,6 +214,6 @@ MIT License — free to use, modify, and distribute.
 
 ## 👤 Author
 
-Built by during the Future Interns ML Internship (2026).
+Built during the Future Interns ML Internship (2026).
 
 ---
