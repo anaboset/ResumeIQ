@@ -5,8 +5,6 @@
 [![Docker](https://img.shields.io/badge/docker-ready-2496ED?logo=docker&logoColor=white)](https://hub.docker.com)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://YOUR_APP.streamlit.app)
-[![Coverage](https://img.shields.io/codecov/c/github/anaboset/FUTURE_ML_03)](https://codecov.io/gh/anaboset/FUTURE_ML_03)
-[![Code Style: Black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![Last Commit](https://img.shields.io/github/last-commit/anaboset/FUTURE_ML_03)](https://github.com/anaboset/FUTURE_ML_03/commits/main)
 [![Stars](https://img.shields.io/github/stars/anaboset/FUTURE_ML_03?style=social)](https://github.com/anaboset/FUTURE_ML_03/stargazers)
 [![Forks](https://img.shields.io/github/forks/anaboset/FUTURE_ML_03?style=social)](https://github.com/anaboset/FUTURE_ML_03/network/members)
