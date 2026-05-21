@@ -1,33 +1,65 @@
-# 🎯 ResumeIQ
+# 🎯 ResumeIQ — ML-Powered Resume Screening System
 
-[![CI](https://github.com/anaboset/FUTURE_ML_03/actions/workflows/ci.yml/badge.svg)](https://github.com/YOUR_USERNAME/resumeiq/actions)
-[![Python](https://img.shields.io/badge/python-3.10%2B-blue)](https://python.org)
+[![CI](https://github.com/anaboset/FUTURE_ML_03/actions/workflows/ci.yml/badge.svg)](https://github.com/anaboset/FUTURE_ML_03/actions)
+[![Python](https://img.shields.io/badge/python-3.11-blue)](https://python.org)
+[![Docker](https://img.shields.io/badge/docker-ready-2496ED?logo=docker&logoColor=white)](https://hub.docker.com)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://YOUR_APP.streamlit.app)
 
+[![Coverage](https://img.shields.io/codecov/c/github/anaboset/FUTURE_ML_03)](https://codecov.io/gh/anaboset/FUTURE_ML_03)
+
+[![Code Style: Black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+
+[![Last Commit](https://img.shields.io/github/last-commit/anaboset/FUTURE_ML_03)](https://github.com/anaboset/FUTURE_ML_03/commits/main)
+
+[![Stars](https://img.shields.io/github/stars/anaboset/FUTURE_ML_03?style=social)](https://github.com/anaboset/FUTURE_ML_03/stargazers)
+
+[![Forks](https://img.shields.io/github/forks/anaboset/FUTURE_ML_03?style=social)](https://github.com/anaboset/FUTURE_ML_03/network/members)
+
 > **Automatically screen, score, and rank job candidates using a 3-signal ML ensemble. Built for HR teams, recruiters, and HR-tech platforms.**
 
+Built as part of the [Future Interns](https://futureinterns.com) Machine Learning Track (2026).
 
 ---
 
-## 🖥️[Live Demo](https://streamlit.app.io)
+## 🖥️ Live Demo
 
 👉 **[Try the live app →](https://YOUR_APP.streamlit.app)**
 
-![ResumeIQ Dashboard](data/processed/demo_screenshot.png)
+![ResumeIQ Dashboard](data/demo_screenshot.png)
 
 ---
 
-## 🧠 How It Works
+## 💡 Why ResumeIQ?
 
-ResumeIQ uses a **3-signal ensemble scoring model** — the same architectural pattern used in real HR-tech products.
+Traditional ATS systems rely heavily on keyword matching,
+often missing strong candidates due to wording differences.
+
+ResumeIQ uses semantic embeddings + structured scoring
+to produce more meaningful candidate rankings while remaining
+interpretable and recruiter-friendly.
+
+---
+
+## ⚡ Key Highlights
+
+- 3-signal ML ensemble scoring
+- Semantic resume ↔ job matching
+- 200+ skill taxonomy
+- Interactive Streamlit dashboard
+- Dockerized & CI-ready
+- Explainable candidate ranking
+---
+
+## 🧠 Pipeline Overview
+
 
 ```
 Resume PDF/Text ──┐
                   ├──► Preprocessor ──► Skill Extractor ──► Scorer ──► Ranker ──► Dashboard
 Job Description ──┘
 ```
-
+---
 ### Scoring Architecture
 
 | Signal | Weight | Method | What it captures |
@@ -38,50 +70,68 @@ Job Description ──┘
 
 **Weights are fully configurable** via the dashboard sidebar.
 
-### Why sentence-transformers over TF-IDF?
-
-TF-IDF treats "built neural networks" and "deep learning experience" as completely different. Sentence-transformers understand semantic equivalence — a resume that says "I built transformer models in PyTorch" will correctly match a JD asking for "deep learning with PyTorch experience."
 
 ---
 
 ## ✨ Features
 
-- **📄 Multi-format input** — Upload PDF or TXT resumes, or paste text directly
-- **🔍 NLP skill extraction** — 200+ skill taxonomy covering ML, cloud, data, web, soft skills
-- **📊 Multi-signal scoring** — 3 independent signals combined via weighted ensemble
-- **🏆 Candidate ranking** — Sorted results with tier classification (Strong/Good/Partial/Weak match)
-- **💡 Explainability** — Plain-English explanation for every candidate's score
-- **❌ Skill gap analysis** — Exactly which skills are matched, missing, and extra
-- **📈 Visual dashboard** — Radar chart, gauge, bar charts, donut breakdown
-- **⚙️ Configurable weights** — Adjust signal weights in real time
-- **📥 CSV export** — Download full ranked results
+### Screening
+- Resume/JD semantic matching
+- Skill gap analysis
+- Candidate ranking
+
+### Explainability
+- Plain-English score explanations
+- Missing vs matched skills
+- Signal-level breakdowns
+
+### Platform
+- Docker support
+- CSV export
+- Configurable scoring weights
 
 ---
 
 ## 🚀 Quick Start
 
-### 1. Clone and install
+### Option A — Docker (recommended)
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/resumeiq.git
-cd resumeiq
+git clone https://github.com/anaboset/FUTURE_ML_03.git
+cd FUTURE_ML_03
+
+docker compose up
+```
+
+Open [http://localhost:8000](http://localhost:8000) — the app is ready.
+
+To run in debug mode with hot-reload:
+
+```bash
+docker compose -f compose.debug.yaml up
+```
+
+### Option B — Local Python
+
+```bash
+git clone https://github.com/anaboset/FUTURE_ML_03.git
+cd FUTURE_ML_03
 
 python -m venv .venv
 source .venv/bin/activate  # Windows: .venv\Scripts\activate
 
 pip install -r requirements.txt
-python -m spacy download en_core_web_sm
 ```
 
-### 2. Run the dashboard
+> spaCy model is installed automatically via `requirements.txt`. No separate download step needed.
 
 ```bash
-streamlit run app/dashboard.py
+streamlit run app/dashboard.py --server.port=8000
 ```
 
-Open [http://localhost:8501](http://localhost:8501) — click **Load Demo Data** to see it in action immediately.
+Open [http://localhost:8000](http://localhost:8000) — click **Load Demo Data** to see it in action immediately.
 
-### 3. Use as a library
+### Option C — Use as a library
 
 ```python
 from src.pipeline import ResumeIQPipeline
@@ -104,54 +154,55 @@ print(ranked_df[["name", "final_score_pct", "tier", "matched_skills", "missing_s
 ```
 resumeiq/
 │
-├── src/                        # Core ML pipeline (production-ready modules)
+├── src/                              # Core ML pipeline
 │   ├── __init__.py
-│   ├── preprocessor.py         # Text cleaning, PDF extraction, lemmatization
-│   ├── skill_extractor.py      # 200+ skill taxonomy + NER + contact extraction
-│   ├── scorer.py               # 3-signal ensemble scoring engine
-│   ├── ranker.py               # Ranking, explainability, summary reports
-│   └── pipeline.py             # Orchestration layer
+│   ├── preprocessor.py               # Text cleaning, PDF extraction, lemmatization
+│   ├── skill_extractor.py            # NER, name extraction, contact info
+│   ├── scorer.py                     # 3-signal ensemble scoring engine
+│   ├── ranker.py                     # Ranking, explainability, summary reports
+│   ├── pipeline.py                   # Orchestration layer
+│   └── taxonomies/
+│       └── skills_taxonomy.py        # 200+ skill definitions with aliases
 │
 ├── app/
-│   └── dashboard.py            # Streamlit interactive dashboard
-│
-├── notebooks/
-│   ├── 01_eda.ipynb            # Exploratory data analysis
-│   └── 02_scoring_experiments.ipynb  # Model validation & experiments
-│
-├── tests/
-│   └── test_scorer.py          # 30+ unit + integration tests
+│   ├── dashboard.py                  # Streamlit entry point
+│   ├── ui/
+│   │   ├── styles.py                 # Custom CSS (injected at runtime)
+│   │   └── charts.py                 # Plotly chart builders (gauge, radar, etc.)
+│   └── utils/
+│       └── files.py                  # Temp file handling & cleanup
 │
 ├── data/
-│   ├── raw/                    # Place Kaggle dataset here (gitignored)
-│   └── processed/              # Cleaned data & visualizations
+│   ├── demo_data.py                  # Demo JD and resume templates
+│   └── raw/                          # Place Kaggle dataset here (gitignored)
 │
-├── .github/workflows/ci.yml    # GitHub Actions CI (Python 3.10 & 3.11)
-├── .streamlit/config.toml      # Streamlit theme config
+├── tests/
+│   └── test_scorer.py                # 30+ unit + integration tests
+│
+├── Dockerfile                        # Production image (Python 3.11-slim)
+├── compose.yaml                      # Standard Docker Compose
+├── compose.debug.yaml                # Debug Compose with hot-reload
+├── .dockerignore
+├── .github/workflows/ci.yml          # GitHub Actions CI (Python 3.11)
+├── .streamlit/config.toml            # Streamlit theme config
 ├── requirements.txt
 └── README.md
 ```
 
 ---
 
-## 🧪 Running Tests
+## 🐳 Docker Details
 
-```bash
-pytest tests/ -v
+The production image is built on `python:3.11-slim` and runs as a non-root user for security. The spaCy model is baked into the image at build time using a direct wheel URL, which is more reliable than running `spacy download` at container startup.
+
+```dockerfile
+# spaCy model installed at build time — no runtime downloads
+RUN pip install \
+  https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.7.1/en_core_web_sm-3.7.1-py3-none-any.whl
 ```
 
-With coverage:
+The app is served on **port 8000** (not the default 8501) to avoid conflicts with other local services.
 
-```bash
-pytest tests/ -v --cov=src --cov-report=term-missing
-```
-
-The test suite covers:
-- Text preprocessing edge cases
-- Skill extraction accuracy (aliases, regex patterns)
-- Scoring signal correctness (perfect match, zero match, partial)
-- Ranking order consistency
-- Full pipeline integration test
 
 ---
 
@@ -161,34 +212,20 @@ This project is compatible with the [Kaggle Resume Dataset](https://www.kaggle.c
 
 Download and place at: `data/raw/UpdatedResumeDataSet.csv`
 
-The EDA notebook (`notebooks/01_eda.ipynb`) handles the rest.
+The app also ships with built-in demo data (`data/demo_data.py`) so you can explore the full pipeline without downloading anything.
 
 ---
 
-## 🔬 Design Decisions
+## 🧩 Architecture Choices
 
-**Why not a trained classification model?**  
-A trained classifier requires labeled pairs of (resume, JD) with binary match labels — data that's expensive to obtain and domain-specific. The ensemble approach generalizes across any job role without retraining, and provides interpretable output (critical for HR compliance).
+| Decision                 | Why                                                      |
+| ------------------------ | -------------------------------------------------------- |
+| **Sentence embeddings**  | Captures semantic meaning beyond keyword overlap         |
+| **3-signal ensemble**    | Balances semantic fit, skill alignment, and experience   |
+| **Configurable weights** | Lets recruiters tune scoring per role                    |
+| **Rule + ML hybrid**     | More explainable and adaptable than fully trained models |
+| **Modular pipeline**     | Easy to extend, test, and deploy                         |
 
-**Why sentence-transformers over TF-IDF?**  
-TF-IDF is sensitive to vocabulary mismatch. Semantic embeddings capture meaning — "built production ML pipelines" and "MLOps engineering experience" score high similarity even with no word overlap.
-
-**Why three signals?**  
-Each signal captures a different dimension: semantic captures overall domain fit, skill match captures concrete technical alignment, and experience captures career stage fit. Combining them makes the score more robust than any single signal.
-
-**Why configurable weights?**  
-Different roles have different priorities. A research role may weight semantic similarity higher; a junior role may care less about experience. The sidebar lets recruiters tune for each position.
-
----
-
-## 🗺️ Potential Extensions
-
-- [ ] Fine-tuned domain-specific embedding model on HR data
-- [ ] Named entity recognition for job titles and companies
-- [ ] Bias detection / fairness audit module
-- [ ] REST API with FastAPI for production integration
-- [ ] Bulk processing from Google Drive / SharePoint
-- [ ] ATS (Applicant Tracking System) export format
 
 ---
 
@@ -196,24 +233,16 @@ Different roles have different priorities. A research role may weight semantic s
 
 | Layer | Technology |
 |-------|-----------|
-| Language | Python 3.10+ |
-| NLP | spaCy, NLTK, sentence-transformers |
+| Language | Python 3.11 |
+| NLP | spaCy 3.7, NLTK, sentence-transformers |
 | ML | scikit-learn, numpy |
 | PDF parsing | pdfplumber |
 | Dashboard | Streamlit, Plotly |
+| Containerization | Docker, Docker Compose |
 | Testing | pytest, pytest-cov |
 | CI/CD | GitHub Actions |
 
----
-
-## 📄 License
-
-MIT License — free to use, modify, and distribute.
 
 ---
 
-## 👤 Author
-
-Built during the Future Interns ML Internship (2026).
-
----
+*Built during the Future Interns ML Internship (2026).*

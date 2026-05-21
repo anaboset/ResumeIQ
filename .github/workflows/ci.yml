@@ -6,12 +6,16 @@ on:
   pull_request:
     branches: [ main ]
 
+env:
+  # Pinned to match Dockerfile — update both places together if upgrading spaCy
+  SPACY_MODEL_URL: https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.7.1/en_core_web_sm-3.7.1-py3-none-any.whl
+
 jobs:
   test:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ["3.10", "3.11"]
+        python-version: ["3.11"]
 
     steps:
     - uses: actions/checkout@v4
@@ -25,21 +29,26 @@ jobs:
       uses: actions/cache@v4
       with:
         path: ~/.cache/pip
-        key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+        # Cache key includes spaCy URL so a model version bump invalidates the cache
+        key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}-${{ env.SPACY_MODEL_URL }}
         restore-keys: |
           ${{ runner.os }}-pip-
 
     - name: Install dependencies
       run: |
-        python -m pip install --upgrade pip
+        python -m pip install --upgrade pip setuptools wheel
         pip install -r requirements.txt
 
-    - name: Download spaCy model
-      run: python -m spacy download en_core_web_sm
+    - name: Install spaCy model (pinned wheel — matches Dockerfile)
+      run: pip install ${{ env.SPACY_MODEL_URL }}
 
     - name: Download NLTK data
       run: |
-        python -c "import nltk; nltk.download('punkt'); nltk.download('stopwords'); nltk.download('averaged_perceptron_tagger'); nltk.download('punkt_tab')"
+        python -c "
+        import nltk
+        for pkg in ['punkt', 'stopwords', 'averaged_perceptron_tagger', 'punkt_tab']:
+            nltk.download(pkg, quiet=True)
+        "
 
     - name: Run tests with coverage
       run: |
