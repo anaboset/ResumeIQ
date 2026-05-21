@@ -138,30 +138,49 @@ def extract_years_of_experience(text: str) -> Optional[float]:
     """
     Extract years of experience from text.
     Handles patterns like '5 years', '3+ years', '2-4 years', etc.
+ 
+    Range patterns are evaluated first and averaged (e.g. '2-4 years' → 3.0).
+    Single-number patterns explicitly exclude range context so '4' in '2-4 years'
+    is not also captured as a standalone value.
     """
-    patterns = [
-        r"(\d+)\+?\s*years?\s+(?:of\s+)?experience",
+    max_years = None
+ 
+    # ── Range patterns first (must precede single-number patterns) ──────────
+    range_patterns = [
+        r"(\d+)\s*-\s*(\d+)\s*years?\s+(?:of\s+)?experience",
+        r"(\d+)\s*-\s*(\d+)\s*years?\s+(?:in|working)",
+        r"experience\s+of\s+(\d+)\s*-\s*(\d+)\s*years?",
+    ]
+    for pat in range_patterns:
+        for match in re.findall(pat, text, re.IGNORECASE):
+            try:
+                years = (int(match[0]) + int(match[1])) / 2
+                if max_years is None or years > max_years:
+                    max_years = years
+            except (ValueError, IndexError):
+                continue
+ 
+    # ── Single-number patterns — negative lookahead excludes range context ──
+    # e.g. prevents matching the '4' in '2-4 years'
+    single_patterns = [
+        r"(\d+)\+?\s*years?\s+(?:of\s+)?experience(?!\s*\d)",
         r"(\d+)\+?\s*years?\s+(?:in|working)",
         r"experience\s+of\s+(\d+)\+?\s*years?",
-        r"(\d+)\s*-\s*(\d+)\s*years?\s+(?:of\s+)?experience",
     ]
-    max_years = None
-    for pat in patterns:
-        matches = re.findall(pat, text, re.IGNORECASE)
-        for match in matches:
-            if isinstance(match, tuple):
-                # Range: take average
-                try:
-                    years = (int(match[0]) + int(match[-1])) / 2
-                except (ValueError, IndexError):
-                    continue
-            else:
-                try:
-                    years = float(match)
-                except ValueError:
-                    continue
-            if max_years is None or years > max_years:
-                max_years = years
+    for pat in single_patterns:
+        for match in re.findall(pat, text, re.IGNORECASE):
+            # Skip if the digit is immediately preceded by a hyphen (part of a range)
+            raw = match if isinstance(match, str) else match[0]
+            idx = text.lower().find(raw + " year") if raw else -1
+            if idx > 0 and text[idx - 1] == "-":
+                continue
+            try:
+                years = float(raw)
+                if max_years is None or years > max_years:
+                    max_years = years
+            except ValueError:
+                continue
+ 
     return max_years
 
 
