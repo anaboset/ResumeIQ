@@ -18,7 +18,7 @@
 
 👉 **[Try the live app →](https://anaresumeiq.streamlit.app/)**
 
-![ResumeIQ Dashboard](dashboard.gif)
+<img src="dashboard.gif" style="display: block; margin: 0 auto; width: 600px;">
 
 ---
 
