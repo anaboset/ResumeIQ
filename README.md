@@ -4,20 +4,19 @@
 [![Python](https://img.shields.io/badge/python-3.11-blue)](https://python.org)
 [![Docker](https://img.shields.io/badge/docker-ready-2496ED?logo=docker&logoColor=white)](https://hub.docker.com)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://anaresumeiq.streamlit.app/)
 [![Last Commit](https://img.shields.io/github/last-commit/anaboset/FUTURE_ML_03)](https://github.com/anaboset/FUTURE_ML_03/commits/main)
 [![Stars](https://img.shields.io/github/stars/anaboset/FUTURE_ML_03?style=social)](https://github.com/anaboset/FUTURE_ML_03/stargazers)
 [![Forks](https://img.shields.io/github/forks/anaboset/FUTURE_ML_03?style=social)](https://github.com/anaboset/FUTURE_ML_03/network/members)
 
 > **Automatically screen, score, and rank job candidates using a 3-signal ML ensemble. Built for HR teams, recruiters, and HR-tech platforms.**
 
-Built as part of the [Future Interns](https://futureinterns.com) Machine Learning Track (2026).
+
 
 ---
 
 ## 🖥️ [Live Demo](https://anaresumeiq.streamlit.app/)
 
-👉 **[Try the live app →](https://YOUR_APP.streamlit.app)**
+👉 **[Try the live app →](https://anaresumeiq.streamlit.app/)**
 
 ![ResumeIQ Dashboard](dashboard.gif)
 
@@ -236,4 +235,4 @@ The app also ships with built-in demo data (`data/demo_data.py`) so you can expl
 
 ---
 
-*Built during the Future Interns ML Internship (2026).*
+*Built during the [Future Interns](https://futureinterns.com/) ML Internship (2026).*
