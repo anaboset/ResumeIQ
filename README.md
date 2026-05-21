@@ -4,7 +4,7 @@
 [![Python](https://img.shields.io/badge/python-3.11-blue)](https://python.org)
 [![Docker](https://img.shields.io/badge/docker-ready-2496ED?logo=docker&logoColor=white)](https://hub.docker.com)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://YOUR_APP.streamlit.app)
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://anaresumeiq.streamlit.app/)
 [![Last Commit](https://img.shields.io/github/last-commit/anaboset/FUTURE_ML_03)](https://github.com/anaboset/FUTURE_ML_03/commits/main)
 [![Stars](https://img.shields.io/github/stars/anaboset/FUTURE_ML_03?style=social)](https://github.com/anaboset/FUTURE_ML_03/stargazers)
 [![Forks](https://img.shields.io/github/forks/anaboset/FUTURE_ML_03?style=social)](https://github.com/anaboset/FUTURE_ML_03/network/members)
@@ -15,7 +15,7 @@ Built as part of the [Future Interns](https://futureinterns.com) Machine Learnin
 
 ---
 
-## 🖥️ Live Demo
+## 🖥️ [Live Demo](https://anaresumeiq.streamlit.app/)
 
 👉 **[Try the live app →](https://YOUR_APP.streamlit.app)**
 
@@ -25,7 +25,7 @@ Built as part of the [Future Interns](https://futureinterns.com) Machine Learnin
 
 ## 💡 Why ResumeIQ?
 
-Traditional ATS systems rely heavily on keyword matching,
+Traditional applicant tracking systems rely heavily on keyword matching,
 often missing strong candidates due to wording differences.
 
 ResumeIQ uses semantic embeddings + structured scoring
