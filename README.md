@@ -19,7 +19,7 @@ Built as part of the [Future Interns](https://futureinterns.com) Machine Learnin
 
 👉 **[Try the live app →](https://YOUR_APP.streamlit.app)**
 
-![ResumeIQ Dashboard](data/demo_screenshot.png)
+![ResumeIQ Dashboard](dashboard.gif)
 
 ---
 
