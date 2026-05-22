@@ -1,12 +1,12 @@
 # 🎯 ResumeIQ — ML-Powered Resume Screening System
 
-[![CI](https://github.com/anaboset/FUTURE_ML_03/actions/workflows/ci.yml/badge.svg)](https://github.com/anaboset/FUTURE_ML_03/actions)
+[![CI](https://github.com/anaboset/FUTURE_ML_03/actions/workflows/ci.yml/badge.svg)](https://github.com/anaboset/ResumeIQ/actions)
 [![Python](https://img.shields.io/badge/python-3.11-blue)](https://python.org)
 [![Docker](https://img.shields.io/badge/docker-ready-2496ED?logo=docker&logoColor=white)](https://hub.docker.com)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Last Commit](https://img.shields.io/github/last-commit/anaboset/FUTURE_ML_03)](https://github.com/anaboset/FUTURE_ML_03/commits/main)
-[![Stars](https://img.shields.io/github/stars/anaboset/FUTURE_ML_03?style=social)](https://github.com/anaboset/FUTURE_ML_03/stargazers)
-[![Forks](https://img.shields.io/github/forks/anaboset/FUTURE_ML_03?style=social)](https://github.com/anaboset/FUTURE_ML_03/network/members)
+[![Last Commit](https://img.shields.io/github/last-commit/anaboset/ResumeIQ)](https://github.com/anaboset/FUTURE_ML_03/commits/main)
+[![Stars](https://img.shields.io/github/stars/anaboset/ResumeIQ?style=social)](https://github.com/anaboset/ResumeIQ/stargazers)
+[![Forks](https://img.shields.io/github/forks/anaboset/ResumeIQ?style=social)](https://github.com/anaboset/ResumeIQ/network/members)
 
 > **Automatically screen, score, and rank job candidates using a 3-signal ML ensemble. Built for HR teams, recruiters, and HR-tech platforms.**
 
@@ -89,8 +89,8 @@ Job Description ──┘
 ### Option A — Docker (recommended)
 
 ```bash
-git clone https://github.com/anaboset/FUTURE_ML_03.git
-cd FUTURE_ML_03
+git clone https://github.com/anaboset/ResumeIQ.git
+cd ResumeIQ
 
 docker compose up
 ```
@@ -106,8 +106,8 @@ docker compose -f compose.debug.yaml up
 ### Option B — Local Python
 
 ```bash
-git clone https://github.com/anaboset/FUTURE_ML_03.git
-cd FUTURE_ML_03
+git clone https://github.com/anaboset/ResumeIQ.git
+cd ResumeIQ
 
 python -m venv .venv
 source .venv/bin/activate  # Windows: .venv\Scripts\activate
@@ -142,7 +142,7 @@ print(ranked_df[["name", "final_score_pct", "tier", "matched_skills", "missing_s
 ## 📁 Project Structure
 
 ```
-FUTURE_ML_03/
+ResumeIQ/
 │
 ├── src/                              # Core ML pipeline
 │   ├── __init__.py
@@ -235,4 +235,4 @@ The app also ships with built-in demo data (`data/demo_data.py`) so you can expl
 
 ---
 
-*Built during the [Future Interns](https://futureinterns.com/) ML Internship (2026).*
+*Built by a AI/ML trainee & Pharmacy student
