@@ -235,4 +235,4 @@ The app also ships with built-in demo data (`data/demo_data.py`) so you can expl
 
 ---
 
-*Built by a AI/ML trainee & Pharmacy student*
+*Built by AI/ML trainee & Pharmacy student*
